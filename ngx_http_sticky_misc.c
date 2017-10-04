@@ -301,10 +301,10 @@ ngx_int_t ngx_http_sticky_misc_text_raw(ngx_pool_t *pool, void *in, size_t len, 
   return NGX_OK;
 }
 
-ngx_int_t ngx_http_sticky_misc_text_md5(ngx_pool_t *pool, struct sockaddr *in, ngx_str_t *digest)
+ngx_int_t ngx_http_sticky_misc_text_md5(ngx_pool_t *pool, void *in, size_t len, ngx_str_t *digest)
 {
   ngx_str_t str;
-  if (ngx_http_sticky_misc_text_raw(pool, in, &str) != NGX_OK) {
+  if (ngx_http_sticky_misc_text_raw(pool, in, len, &str) != NGX_OK) {
     return NGX_ERROR;
   }
 
@@ -316,10 +316,10 @@ ngx_int_t ngx_http_sticky_misc_text_md5(ngx_pool_t *pool, struct sockaddr *in, n
   return ngx_pfree(pool, &str);
 }
 
-ngx_int_t ngx_http_sticky_misc_text_sha1(ngx_pool_t *pool, struct sockaddr *in, ngx_str_t *digest)
+ngx_int_t ngx_http_sticky_misc_text_sha1(ngx_pool_t *pool, void *in, size_t len, ngx_str_t *digest)
 {
   ngx_str_t str;
-  if (ngx_http_sticky_misc_text_raw(pool, in, &str) != NGX_OK) {
+  if (ngx_http_sticky_misc_text_raw(pool, in, len, &str) != NGX_OK) {
     return NGX_ERROR;
   }
 
